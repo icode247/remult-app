@@ -1,35 +1,75 @@
-import express, { Router, Response, Request } from "express";
-import { User } from "./shared/user";
+import express, { Router, Request, Response } from "express";
+import { remultExpress } from "remult/remult-express";
 import { remult } from "remult";
-import { UserController } from "./shared/authController";
+import { User } from "./shared/user";
+import { Session } from "express-session";
+import { Todo } from "./shared/todo";
+
+export interface ISession extends Session {
+  name?: string;
+  email?: string;
+  password: string;
+}
+
+const api = remultExpress({});
 
 export const auth = Router();
 
 auth.use(express.json());
 
-
-export const validUsers = [
-  { id: "1", name: "Jane", roles: [] },
-  { id: "2", name: "Steve", roles: [] },
-];
-
-auth.post("/api/signIn", async (req: Request, res: Response) => {
-  try {
-    const user = await UserController.findOne(req.body.email)
-    if (user) {
-      req.user = user;
-      res.json(user);
-    } else {
-      res.status(404).json("Invalid user, try 'Steve' or 'Jane'");
-    }
-  } catch (e) {
-    console.log(e);
+auth.post(
+  "/api/signUp",
+  api.withRemult,
+  async (req: Request, res: Response) => {
+    const user = await remult
+      .repo(User)
+      .save({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+    res.json(user);
   }
+);
+
+auth.post(
+  "/api/signIn",
+  api.withRemult,
+  async (req: Request, res: Response) => {
+    const user = await remult
+      .repo(User)
+      .find({ where: { email: req.body.email } });
+    if (user.length > 1) {
+      if (user[0].password == req.body.password) {
+        (req.session as ISession).id = user[0].id;
+        res.json(user);
+      }
+    } else {
+      res.status(404).json("Invalid user or password");
+    }
+  }
+);
+auth.post("/api/createTodo",
+api.withRemult,
+async (req: Request, res: Response) => {
+  const todo = await remult
+    .repo(Todo)
+    .save({ name:req.body.name, userId: req.session.id});
+    res.json(todo)
+})
+auth.get(
+  "/api/getTodo",
+  api.withRemult,
+  async (req: Request, res: Response) => {
+    const user = await remult
+      .repo(User)
+      .find({ where: { id: req.session.id } });
+      res.json(user[0]?.todo)
+  }
+);
+auth.post("/api/signOut", (req, res) => {
+  req.session.id = "";
+  res.json("signed out");
 });
 
-// auth.post("/api/signOut", (req: Request, res: Response) => {
-//     req.session = undefined
-//     res.json("signed out");
-// });
-
-auth.get("/api/currentUser", (req, res) => res.json(req.session));
+auth.get("/api/currentUser", (req, res) => res.json(req.session.id));

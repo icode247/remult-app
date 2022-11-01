@@ -6,7 +6,7 @@ import { Todo } from "./shared/todo";
 import { User } from "./shared/user";
 import session from "cookie-session";
 import { auth } from "./auth";
-import { UserController } from "./shared/authController";
+
 
 const app = express();
 
@@ -15,8 +15,6 @@ const connectionString =
 console.log(process.env.DATABASE_UR);
 app.use(
   remultExpress({
-    entities: [Todo, User],
-    controllers:[UserController],
     dataProvider: () =>
       createPostgresConnection({
         connectionString, // Default: process.env.DATABASE_URL
@@ -26,7 +24,7 @@ app.use(
 );
 app.use(
   session({
-    secret: process.env["SESSION_SECRET"] || "my secret",
+    secret: process.env.SESSION_SECRET || "my secret",
   })
 );
 app.use(auth);

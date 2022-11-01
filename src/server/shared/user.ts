@@ -1,7 +1,7 @@
-import { Allow, Entity, Fields,IdEntity } from 'remult';
+import { Entity, Fields,IdEntity } from 'remult';
 import { Todo } from './todo';
 
-@Entity('users', {
+@Entity('user', {
     allowApiCrud: true
 })
 export class User extends IdEntity{
@@ -19,7 +19,6 @@ export class User extends IdEntity{
         options.serverExpression = async (user) =>
             remult.repo(Todo).find({ where: { userId: user.id } })
     })
-    todo!: Todo[]
-
+    todo!: Todo[];
 }
  

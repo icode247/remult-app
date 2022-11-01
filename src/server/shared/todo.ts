@@ -1,7 +1,7 @@
-import { Allow, Entity, Fields, IdEntity } from 'remult';
+import { Entity, Fields, IdEntity } from 'remult';
 
 @Entity('todos', {
-    allowApiCrud: Allow.authenticated
+    allowApiCrud: true
 })
 export class Todo extends IdEntity {
     @Fields.string()

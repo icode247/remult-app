@@ -1,31 +1,26 @@
-import { useEffect, useState } from "react";
-import { UserInfo } from "remult";
-import Login from "./components/Login";
+import { use } from "passport";
+import { useState, useEffect } from "react";
+import UserAuth from "./components/UserAuth";
+import { Todo } from "./server/shared/todo";
+import { User } from "./server/shared/user";
+
 
 const Auth: React.FC<{ children: JSX.Element }> = ({ children }) => {
-    
-    const [currentUser, setCurrentUser] = useState<UserInfo>();
 
-    
+    const [currentUser, setCurrentUser] = useState<User>();
+    const [todos, setTodos] = useState<Todo[]>()
+
     const signOut = async () => {
         await fetch('/api/signOut', {
             method: "POST"
         });
         setCurrentUser(undefined);
     }
-    useEffect(() => {
-        fetch('/api/currentUser').then(r => r.json())
-            .then(async currentUserFromServer => {
-                setCurrentUser(currentUserFromServer)
-            });
-    }, []);
-
     if (!currentUser)
         return (
-            <Login  setCurrentUser= {setCurrentUser}/>
+            <UserAuth setCurrentUser={setCurrentUser} />
         )
     return <>
-    
         <button onClick={signOut}>Sign Out</button>
         {children}
     </>
