@@ -29,6 +29,7 @@ auth.post(
         password: req.body.password,
       });
     res.json(user);
+    console.log(user)
   }
 );
 
@@ -47,6 +48,17 @@ auth.post(
     } else {
       res.status(404).json("Invalid user or password");
     }
+  }
+);
+
+auth.get(
+  "/api/users",
+  api.withRemult,
+  async (req: Request, res: Response) => {
+    const user = await remult
+      .repo(User)
+      .find();
+      res.json(user)
   }
 );
 auth.post("/api/createTodo",

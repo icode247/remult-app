@@ -1,7 +1,7 @@
 import { Entity, Fields,IdEntity } from 'remult';
 import { Todo } from './todo';
 
-@Entity('user', {
+@Entity('user1', {
     allowApiCrud: true
 })
 export class User extends IdEntity{

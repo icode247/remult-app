@@ -1,0 +1,74 @@
+[
+  {
+    "id": "0954ad8a-db0c-4a79-8635-2257e5942bba",
+    "name": "Helo",
+    "email": "helo@gmail.com",
+    "password": "1234"
+  },
+  {
+    "id": "b83387e7-cae3-4f99-9dd0-80397c71d01d",
+    "name": "d",
+    "email": "dd@gmail.com",
+    "password": "123"
+  },
+  {
+    "id": "cf0f9559-0fe7-4f50-ba11-e53025d3c097",
+    "name": "d",
+    "email": "doe2@gmail.com",
+    "password": "1234"
+  },
+  {
+    "id": "73bf1f22-a79b-4645-a26b-9076cb3b3908",
+    "name": "d",
+    "email": "doe2@gmail.com",
+    "password": "1234"
+  },
+  {
+    "id": "a00a565f-add0-47d7-9670-367e79f4b4dc",
+    "name": "Helo",
+    "email": "zionekekenta@gmail.com",
+    "password": "1234"
+  },
+  {
+    "id": "7333e55a-cf8f-466d-a897-f6e8ebb34519",
+    "name": "w",
+    "email": "evuetaphajoshua@gmail.com",
+    "password": "www"
+  },
+  {
+    "id": "65037818-a7ff-4e4e-b5a1-c707456e5659",
+    "name": "Hey",
+    "email": "hey@gmail.com",
+    "password": "heypass"
+  },
+  {
+    "id": "5480bfc6-9aec-4271-87d8-f9f0bb0dd3ca",
+    "name": "Hey",
+    "email": "hey@gmail.com",
+    "password": "heypass"
+  },
+  {
+    "id": "9f3c000e-38b9-4b06-bf4c-575827320afe",
+    "name": "Hey",
+    "email": "hey@gmail.com",
+    "password": "heypass"
+  },
+  {
+    "id": "b6d2e9ae-3a32-481c-911f-0eb1556b2be6",
+    "name": "Hey1",
+    "email": "hey@gmail.com",
+    "password": "heypass"
+  },
+  {
+    "id": "fbc90592-ab1e-46cb-868d-035ca085c56a",
+    "name": "d",
+    "email": "ee@gmail.com",
+    "password": "eee"
+  },
+  {
+    "id": "5feb0d40-e3c9-44c0-9bed-1775e8757493",
+    "name": "d",
+    "email": "zionekekenta@gmail.com",
+    "password": "1234"
+  }
+]

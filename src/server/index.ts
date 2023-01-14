@@ -12,14 +12,13 @@ const app = express();
 
 const connectionString =
   "postgresql://postgres:1234@localhost:5432/mydb?schema=schema$prod";
-console.log(process.env.DATABASE_UR);
 app.use(
   remultExpress({
     dataProvider: () =>
       createPostgresConnection({
         connectionString, // Default: process.env.DATABASE_URL
         autoCreateTables: true, // Entities will be synced with the database. Default: true
-      }),
+      })
   })
 );
 app.use(

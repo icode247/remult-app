@@ -23,8 +23,9 @@ const UserAuth = (props: any) => {
         else alert(await result.json());
     }
 
-    const signIn = async (e:any) => {
+    const signIn = async (e: any) => {
         e.preventDefault();
+        console.log('djddjd')
         const result = await fetch('/api/signIn', {
             method: "POST",
             headers: {

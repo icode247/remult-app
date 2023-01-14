@@ -25,7 +25,7 @@ function App() {
       .then(async todosData => {
         setTodos(todosData)
       });
-  });
+  },[todos]);
 
   return (
     <div className="container">
@@ -33,9 +33,9 @@ function App() {
         <h4>Todos</h4>
         <hr />
         <div>
-          <form className="form" onSubmit={create}>
-            <input type="text" name="name" onChange={(e) => setName(e.target.value)} />
-            <button type="submit">Add</button>
+          <form className="form">
+            <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name}/>
+            <button type="button" onClick={create}>Add</button>
           </form>
         </div>
         <div className="task-list">
